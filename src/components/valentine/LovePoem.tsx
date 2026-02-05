@@ -54,7 +54,7 @@ const LovePoem = ({ onComplete }: LovePoemProps) => {
 
   return (
     <div 
-      className="h-screen flex flex-col items-center justify-center bg-gradient-to-b from-background via-secondary to-background overflow-hidden"
+      className="h-screen w-screen fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-background via-secondary to-background overflow-hidden"
       style={{ opacity, transition: 'opacity 1s ease-in' }}
     >
       <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 pt-8">

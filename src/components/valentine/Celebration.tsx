@@ -31,7 +31,7 @@ const Celebration = ({ onSelectQuestionCount }: CelebrationProps) => {
   }, []);
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary p-4 relative overflow-hidden">
+    <div className="h-screen w-screen fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary p-4 relative overflow-hidden">
       {/* Fireworks */}
       {showFireworks.map(fw => (
         <div
