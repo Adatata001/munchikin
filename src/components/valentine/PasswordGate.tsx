@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import teddyBear from "@/assets/teddy-bear.png";
+import pookieBear from "@/assets/pookie-bear.png";
 
 interface PasswordGateProps {
   onSuccess: () => void;
@@ -23,12 +23,12 @@ const PasswordGate = ({ onSuccess }: PasswordGateProps) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary p-4">
+    <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary p-4 overflow-hidden">
       <Card className="w-full max-w-md shadow-xl border-primary/20">
         <CardContent className="pt-8 pb-8 flex flex-col items-center gap-6">
           <img 
-            src={teddyBear} 
-            alt="Teddy Bear" 
+            src={pookieBear} 
+            alt="Pookie Bear" 
             className="w-32 h-32 object-contain drop-shadow-lg"
           />
           
