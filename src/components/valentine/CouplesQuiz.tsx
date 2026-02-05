@@ -67,7 +67,7 @@ const CouplesQuiz = ({ onComplete }: CouplesQuizProps) => {
   };
 
   return (
-    <div className="relative">
+    <div className="h-screen w-screen fixed inset-0 relative">
       <audio ref={audioRef} src={myMunchkin} loop />
       
       {/* Play button for browsers that block autoplay */}

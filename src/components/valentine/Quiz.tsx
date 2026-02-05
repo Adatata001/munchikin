@@ -62,7 +62,7 @@ const Quiz = ({ questions, onComplete, title = "Quiz Time! 🎯" }: QuizProps) =
   };
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary p-4 overflow-hidden">
+    <div className="h-screen w-screen fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary p-4 overflow-hidden">
       <div className="w-full max-w-2xl">
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-primary text-center mb-2">{title}</h2>

@@ -21,12 +21,12 @@ const WillYouBeMyVal = ({ onYes, isReturnVisit = false }: WillYouBeMyValProps) =
   }, []);
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary p-4 overflow-hidden">
+    <div className="h-screen w-screen fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary p-4 overflow-hidden">
       <div className="flex flex-col items-center gap-6 max-w-lg text-center">
         <img 
           src={pookieBear} 
           alt="Pookie Bear" 
-          className="w-48 h-48 md:w-64 md:h-64 object-contain drop-shadow-2xl animate-bounce"
+          className="w-64 h-64 md:w-80 md:h-80 object-contain drop-shadow-2xl animate-bounce"
           style={{ animationDuration: "2s" }}
         />
         

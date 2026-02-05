@@ -54,7 +54,7 @@ const Countdown = ({ targetDate, onComplete }: CountdownProps) => {
   );
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary p-4 overflow-hidden">
+    <div className="h-screen w-screen fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary p-4 overflow-hidden">
       <div className="flex flex-col items-center gap-8 max-w-4xl text-center">
         <h1 className="text-3xl md:text-5xl font-bold text-primary">
           Counting Down to Valentine's Day 💙

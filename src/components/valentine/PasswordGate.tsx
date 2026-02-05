@@ -23,13 +23,13 @@ const PasswordGate = ({ onSuccess }: PasswordGateProps) => {
   };
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary p-4 overflow-hidden">
+    <div className="h-screen w-screen fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary p-4 overflow-hidden">
       <Card className="w-full max-w-md shadow-xl border-primary/20">
         <CardContent className="pt-8 pb-8 flex flex-col items-center gap-6">
           <img 
             src={pookieBear} 
             alt="Pookie Bear" 
-            className="w-32 h-32 object-contain drop-shadow-lg"
+            className="w-48 h-48 object-contain drop-shadow-lg"
           />
           
           <h1 className="text-2xl font-bold text-primary text-center">
