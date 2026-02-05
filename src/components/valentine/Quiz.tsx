@@ -62,7 +62,7 @@ const Quiz = ({ questions, onComplete, title = "Quiz Time! 🎯" }: QuizProps) =
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary p-4">
+    <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary p-4 overflow-hidden">
       <div className="w-full max-w-2xl">
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-primary text-center mb-2">{title}</h2>
@@ -77,7 +77,7 @@ const Quiz = ({ questions, onComplete, title = "Quiz Time! 🎯" }: QuizProps) =
         <Card className="shadow-xl border-primary/20">
           <CardContent className="pt-8 pb-8">
             <h3 className="text-xl md:text-2xl font-semibold text-center mb-8 text-foreground">
-              {currentQuestion.question}
+              <span className="block max-w-full break-words">{currentQuestion.question}</span>
             </h3>
 
             <div className="space-y-4">
@@ -86,10 +86,10 @@ const Quiz = ({ questions, onComplete, title = "Quiz Time! 🎯" }: QuizProps) =
                   key={index}
                   onClick={() => handleAnswer(option)}
                   disabled={isAnswered}
-                  className={`w-full text-left justify-start text-lg py-6 px-6 transition-all ${getButtonStyle(option)}`}
+                  className={`w-full text-left justify-start text-base py-6 px-6 transition-all whitespace-normal h-auto min-h-[3.5rem] ${getButtonStyle(option)}`}
                 >
                   <span className="mr-3 font-bold">{String.fromCharCode(65 + index)}.</span>
-                  {option}
+                  <span className="break-words">{option}</span>
                 </Button>
               ))}
             </div>
