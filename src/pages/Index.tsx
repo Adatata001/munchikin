@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PasswordGate from "@/components/valentine/PasswordGate";
 import WillYouBeMyVal from "@/components/valentine/WillYouBeMyVal";
 import Celebration from "@/components/valentine/Celebration";
@@ -21,6 +21,43 @@ type Page =
   | "couplesQuiz"
   | "finalResults";
 
+const STORAGE_KEY = "valentine_progress";
+
+interface Progress {
+  hasPassedPassword: boolean;
+  hasSaidYes: boolean;
+  hasCompletedPreQuiz: boolean;
+  hasSeenCountdown: boolean;
+  hasSeenPoem: boolean;
+}
+
+const getStoredProgress = (): Progress => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      return JSON.parse(stored);
+    }
+  } catch (e) {
+    console.error("Failed to read progress", e);
+  }
+  return {
+    hasPassedPassword: false,
+    hasSaidYes: false,
+    hasCompletedPreQuiz: false,
+    hasSeenCountdown: false,
+    hasSeenPoem: false,
+  };
+};
+
+const saveProgress = (progress: Partial<Progress>) => {
+  try {
+    const current = getStoredProgress();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...current, ...progress }));
+  } catch (e) {
+    console.error("Failed to save progress", e);
+  }
+};
+
 const Index = () => {
   const [currentPage, setCurrentPage] = useState<Page>("password");
   const [isReturnVisit, setIsReturnVisit] = useState(false);
@@ -32,13 +69,39 @@ const Index = () => {
   // Valentine's Day 2025
   const valentinesDay = new Date("2025-02-14T00:00:00");
 
+  // Restore progress on mount
+  useEffect(() => {
+    const progress = getStoredProgress();
+    const now = new Date();
+    const isValentinesDay = now >= valentinesDay;
+
+    if (progress.hasSeenPoem) {
+      // They've completed everything before Valentine's, go to couples quiz
+      setIsReturnVisit(true);
+      setCurrentPage("couplesQuiz");
+    } else if (progress.hasSeenCountdown && isValentinesDay) {
+      // Countdown complete (it's Valentine's Day!), go to poem
+      setCurrentPage("poem");
+    } else if (progress.hasCompletedPreQuiz) {
+      // They completed pre-quiz, show countdown
+      setCurrentPage("countdown");
+    } else if (progress.hasSaidYes) {
+      // They said yes, show celebration
+      setCurrentPage("celebration");
+    } else if (progress.hasPassedPassword) {
+      // They passed password, show will you be my val
+      setCurrentPage("willYouBeMyVal");
+    }
+  }, []);
+
   const handlePasswordSuccess = () => {
+    saveProgress({ hasPassedPassword: true });
     setCurrentPage("willYouBeMyVal");
   };
 
   const handleYes = () => {
+    saveProgress({ hasSaidYes: true });
     if (isReturnVisit) {
-      // Skip countdown flow, go directly to couples quiz
       setCurrentPage("couplesQuiz");
     } else {
       setCurrentPage("celebration");
@@ -54,14 +117,17 @@ const Index = () => {
   const handlePreQuizComplete = (score: number, wrongAnswers: { question: string; userAnswer: string; correctAnswer: string }[]) => {
     setPreQuizScore(score);
     setPreQuizWrongAnswers(wrongAnswers);
+    saveProgress({ hasCompletedPreQuiz: true });
     setCurrentPage("preQuizResults");
   };
 
   const handleCountdownComplete = () => {
+    saveProgress({ hasSeenCountdown: true });
     setCurrentPage("poem");
   };
 
   const handlePoemComplete = () => {
+    saveProgress({ hasSeenPoem: true });
     setCurrentPage("couplesQuiz");
   };
 
