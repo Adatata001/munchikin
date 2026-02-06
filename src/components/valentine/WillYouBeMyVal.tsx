@@ -22,13 +22,17 @@ const WillYouBeMyVal = ({ onYes, isReturnVisit = false }: WillYouBeMyValProps) =
 
   return (
     <div className="h-screen w-screen fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary p-4 overflow-hidden">
-      <div className="flex flex-col items-center gap-6 max-w-lg text-center">
+      <div className="flex flex-col items-center gap-6 max-w-lg text-center bg-primary/20 backdrop-blur-sm rounded-2xl p-8 border border-primary/30 shadow-[0_0_30px_rgba(59,130,246,0.3)]">
         <img 
           src={pookieBear} 
           alt="Pookie Bear" 
           className="w-64 h-64 md:w-80 md:h-80 object-contain drop-shadow-2xl animate-bounce"
           style={{ animationDuration: "2s" }}
         />
+        
+        <p className="text-lg md:text-xl text-muted-foreground italic">
+          We've been through a lot together, so I dare to ask...
+        </p>
         
         <h1 className="text-3xl md:text-5xl font-bold text-primary">
           Will you be my Val?? 💙
