@@ -24,7 +24,7 @@ const PasswordGate = ({ onSuccess }: PasswordGateProps) => {
 
   return (
     <div className="h-screen w-screen fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary p-4 overflow-hidden">
-      <Card className="w-full max-w-md shadow-xl border-primary/20">
+      <Card className="w-full max-w-md shadow-[0_0_30px_rgba(59,130,246,0.3)] border-primary/30 bg-primary/20 backdrop-blur-sm">
         <CardContent className="pt-8 pb-8 flex flex-col items-center gap-6">
           <img 
             src={pookieBear} 
