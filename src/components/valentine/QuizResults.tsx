@@ -54,7 +54,7 @@ const QuizResults = ({ score, total, wrongAnswers, onContinue, buttonText = "Con
       ))}
 
       <div className="w-full max-w-2xl z-10">
-        <Card className="shadow-xl border-primary/20">
+        <Card className="shadow-xl border-primary/30 bg-primary/20 backdrop-blur-sm">
           <CardContent className="pt-8 pb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-center text-primary mb-4">
               Quiz Complete! 🎉
