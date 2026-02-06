@@ -74,7 +74,7 @@ const Quiz = ({ questions, onComplete, title = "Quiz Time! 🎯" }: QuizProps) =
           </div>
         </div>
 
-        <Card className="shadow-xl border-primary/30 bg-primary/20 backdrop-blur-sm">
+        <Card className="shadow-[0_0_30px_rgba(59,130,246,0.3)] border-primary/30 bg-primary/20 backdrop-blur-sm">
           <CardContent className="pt-8 pb-8">
             <h3 className="text-xl md:text-2xl font-semibold text-center mb-8 text-foreground">
               <span className="block max-w-full break-words">{currentQuestion.question}</span>
