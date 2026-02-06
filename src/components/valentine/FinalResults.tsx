@@ -41,7 +41,7 @@ const FinalResults = ({ score, total, onRestart }: FinalResultsProps) => {
   if (!showResult) {
     return (
       <div className="h-screen w-screen fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary p-4 overflow-hidden">
-        <Card className="w-full max-w-lg shadow-xl border-primary/20">
+        <Card className="w-full max-w-lg shadow-xl border-primary/30 bg-primary/20 backdrop-blur-sm">
           <CardContent className="pt-8 pb-8 flex flex-col items-center gap-6">
             <h1 className="text-3xl md:text-4xl font-bold text-primary text-center">
               Time to know your fate!! 🔮
@@ -89,7 +89,7 @@ const FinalResults = ({ score, total, onRestart }: FinalResultsProps) => {
         </div>
       ))}
 
-      <Card className="w-full max-w-lg shadow-xl border-primary/20 z-10">
+      <Card className="w-full max-w-lg shadow-xl border-primary/30 bg-primary/20 backdrop-blur-sm z-10">
         <CardContent className="pt-8 pb-8 flex flex-col items-center gap-6">
           {passed ? (
             <>

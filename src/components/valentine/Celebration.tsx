@@ -47,7 +47,7 @@ const Celebration = ({ onSelectQuestionCount }: CelebrationProps) => {
         </div>
       ))}
 
-      <div className="flex flex-col items-center gap-8 max-w-2xl text-center z-10">
+      <div className="flex flex-col items-center gap-8 max-w-2xl text-center z-10 bg-primary/20 backdrop-blur-sm rounded-2xl p-8 border border-primary/30">
         <h1 className="text-5xl md:text-7xl font-bold text-primary animate-bounce">
           YAAAAAYY!!! 🎉
         </h1>
