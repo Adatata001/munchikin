@@ -22,7 +22,7 @@ const WillYouBeMyVal = ({ onYes, isReturnVisit = false }: WillYouBeMyValProps) =
 
   return (
     <div className="h-screen w-screen fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary p-4 overflow-hidden">
-      <div className="flex flex-col items-center gap-4 md:gap-6 max-w-lg text-center bg-primary/20 backdrop-blur-sm rounded-2xl p-4 md:p-8 border border-primary/30 shadow-[0_0_30px_rgba(59,130,246,0.3)] max-h-[90vh] overflow-auto">
+      <div className="flex flex-col items-center gap-4 md:gap-6 max-w-lg text-center bg-primary/20 backdrop-blur-sm rounded-2xl p-4 md:p-8 border border-primary/30 shadow-[0_0_30px_rgba(59,130,246,0.3)]">
         <img 
           src={pookieBear} 
           alt="Pookie Bear" 

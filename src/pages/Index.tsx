@@ -66,37 +66,48 @@ const Index = () => {
   const [preQuizWrongAnswers, setPreQuizWrongAnswers] = useState<{ question: string; userAnswer: string; correctAnswer: string }[]>([]);
   const [couplesQuizScore, setCouplesQuizScore] = useState(0);
 
-  // Valentine's Day 2025
-  const valentinesDay = new Date("2025-02-14T00:00:00");
+  // Valentine's Day target - use current year
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const valentinesDay = new Date(`${currentYear}-02-14T00:00:00`);
+  const isPostValentines = now > valentinesDay;
 
   // Restore progress on mount
   useEffect(() => {
     const progress = getStoredProgress();
-    const now = new Date();
-    const isValentinesDay = now >= valentinesDay;
 
     if (progress.hasSeenPoem) {
-      // They've completed everything before Valentine's, go to couples quiz
       setIsReturnVisit(true);
       setCurrentPage("couplesQuiz");
-    } else if (progress.hasSeenCountdown && isValentinesDay) {
-      // Countdown complete (it's Valentine's Day!), go to poem
+    } else if (progress.hasSeenCountdown && isPostValentines) {
       setCurrentPage("poem");
     } else if (progress.hasCompletedPreQuiz) {
-      // They completed pre-quiz, show countdown
-      setCurrentPage("countdown");
+      // Skip countdown if past Valentine's Day
+      if (isPostValentines) {
+        setCurrentPage("poem");
+      } else {
+        setCurrentPage("countdown");
+      }
     } else if (progress.hasSaidYes) {
-      // They said yes, show celebration
       setCurrentPage("celebration");
     } else if (progress.hasPassedPassword) {
-      // They passed password, show will you be my val
-      setCurrentPage("willYouBeMyVal");
+      // Skip "Will you be my Val" if past Valentine's Day
+      if (isPostValentines) {
+        setCurrentPage("celebration");
+      } else {
+        setCurrentPage("willYouBeMyVal");
+      }
     }
   }, []);
 
   const handlePasswordSuccess = () => {
     saveProgress({ hasPassedPassword: true });
-    setCurrentPage("willYouBeMyVal");
+    // Skip "Will you be my Val" if past Valentine's Day
+    if (isPostValentines) {
+      setCurrentPage("celebration");
+    } else {
+      setCurrentPage("willYouBeMyVal");
+    }
   };
 
   const handleYes = () => {
@@ -138,7 +149,12 @@ const Index = () => {
 
   const handleRestart = () => {
     setIsReturnVisit(true);
-    setCurrentPage("willYouBeMyVal");
+    // Skip "Will you be my Val" if past Valentine's Day, go straight to quiz selection
+    if (isPostValentines) {
+      setCurrentPage("celebration");
+    } else {
+      setCurrentPage("willYouBeMyVal");
+    }
     // Reset quiz states
     setPreQuizQuestions([]);
     setPreQuizScore(0);
@@ -172,8 +188,15 @@ const Index = () => {
             score={preQuizScore}
             total={preQuizQuestions.length}
             wrongAnswers={preQuizWrongAnswers}
-            onContinue={() => setCurrentPage("countdown")}
-            buttonText="Continue to Countdown"
+            onContinue={() => {
+              if (isPostValentines) {
+                saveProgress({ hasCompletedPreQuiz: true, hasSeenCountdown: true });
+                setCurrentPage("poem");
+              } else {
+                setCurrentPage("countdown");
+              }
+            }}
+            buttonText={isPostValentines ? "Continue to Poem" : "Continue to Countdown"}
           />
         );
       
